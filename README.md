@@ -12,4 +12,4 @@ I implemented my solution in C++, using a class to encapsulate the graph and a h
 
 To apply the comma sprinkler rules, if a vetex has any edge that holds a comma, all its edges (incoming and outgoing) that hold a space are changed to hold a comma. This is done for every vertex starting from the beginning of the graph. The process is repeated until there are no more edges to change. After applying the rules, the piece of text is output into a new text file. 
 
-The assignment gave eight test text files on which to apply the rules and eight corresponding text files containing the result of applying the Comma Sprinkler rules. My solution was required to compare my result text file to the given result file.
+The assignment gave eight test text files (tc-1.in, tc-2.in, etc.) on which to apply the rules and eight corresponding text files (tc-1.ans, tc-2.ans, etc.) containing the result of applying the Comma Sprinkler rules. My solution was required to compare my result text file to the given result file.
