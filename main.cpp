@@ -47,7 +47,7 @@ private:
 	vector<edge> edgesViaPeriods;
   };
 
-  string inputFile = "", outputFile = "";
+  string inputFile = "", outputFile = "", expectedOutputFile = "";
 
   bool pastFirstWord = false;
   char edgeChar = '\0', endChar = '\0';
@@ -445,6 +445,25 @@ public:
 	outputFilePointer << ss.str();
   }
 
+  bool compareOutputFiles( string expectedPath, fstream& expectedOutputFilePointer, string ouputPath, fstream& outputFilePointer ) {
+	string outputString;  
+	string expectedOutputString;
+	bool same = false;
+
+	while ( expectedOutputFilePointer >> expectedOutputString ) {
+	  outputFilePointer >> outputString;
+	  if ( outputString == expectedOutputString ) {
+		same = true;
+	  }
+	  else if ( outputString != expectedOutputString ) {
+		same = false;
+	  }
+	  if ( !same )
+		break;
+	}
+	return same;
+  }
+
   void printGraph() {
 	for ( auto x : graph ) {
 	  cout << "(";
@@ -466,17 +485,15 @@ public:
 };
 
 int main() {
-  // int yolo() {
   auto theBigBang = high_resolution_clock::now();  
 
-  string inputFiles[10] = {"sample-1.in", "sample-2.in", "tc-1.in", "tc-2.in", "tc-3.in",
-	"tc-4.in", "tc-5.in", "tc-6.in", "tc-7.in", "tc-8.in"};
-  string outputFiles[10] = {"result-sample1.txt", "result-sample2.txt", "result1.txt", "result2.txt", "result3.txt",
-	"result4.txt", "result5.txt", "result6.txt", "result7.txt", "result8.txt"};
-  int FUTIndex = 2; 
+  string inputFiles[10] = {"tc-1.in", "tc-2.in", "tc-3.in",	"tc-4.in", "tc-5.in", "tc-6.in", "tc-7.in", "tc-8.in"};
+  string expectedOutputFiles[10] = {"tc-1.ans", "tc-2.ans", "tc-3.ans",	"tc-4.ans", "tc-5.ans", "tc-6.ans", "tc-7.ans", "tc-8.ans"};
+  string outputFiles[10] = {"result1.txt", "result2.txt", "result3.txt", "result4.txt", "result5.txt", "result6.txt", "result7.txt", "result8.txt"};
+  int FUTIndex = 0; 
 
   for ( ; FUTIndex < 10; FUTIndex++ ) {
-	if ( FUTIndex != 2 ) {
+	if ( FUTIndex != 0 ) {
 	  cout << "--------------------------------------------------------------------------------" << endl << endl;
 	}
 
@@ -485,6 +502,12 @@ int main() {
 	  cerr << "Could not open file: "<< inputFiles[FUTIndex] << endl;
 	  return 1;
 	} 
+
+	fstream expectedOutputFilePointer( expectedOutputFiles[FUTIndex], ios::in );
+	if ( !expectedOutputFilePointer ) {
+	  cerr << "Could not open file: "<< expectedOutputFiles[FUTIndex] << endl;
+	  return 1;
+	}
 
 	fstream outputFilePointer( outputFiles[FUTIndex], ios::out );
 	if ( !outputFilePointer ) {
@@ -499,14 +522,14 @@ int main() {
 	//cout << "Pre-commanation graph:" << endl;
 	//dGraph.printGraph();
 
-	cout << "Applying Comma-nator Rules ....." << endl;
+	cout << "Applying Comma Sprinkler Rules ....." << endl;
 
 	auto start = high_resolution_clock::now();  
 	dGraph.commanate();
 	auto end = high_resolution_clock::now();
 	int duration = duration_cast<microseconds>(end-start).count();
 
-	cout << "Comma-nator rule application complete!" << endl;
+	cout << "Comma Sprinkler rule application complete!" << endl;
 	cout << "Duration: " << fixed << setprecision( 2 ) << ((float)duration) / 1000 << "ms" << endl << endl;
 
 	//cout << "Post-commanation graph:" << endl;
@@ -523,12 +546,32 @@ int main() {
 	cout << "Duration: " << fixed << setprecision( 2 ) << ((float)durationTwo) / 1000 << "ms" << endl << endl;
 	cout << "Net duration: " << fixed << setprecision( 2 ) << ((float)duration + durationTwo) / 1000 << "ms" << endl << endl;
 
+	// compare output and expected output
+	outputFilePointer.close();
+	outputFilePointer.open( outputFiles[FUTIndex], ios::in );
+	if ( !outputFilePointer ) {
+	  cerr << "Could not open file: " << outputFiles[FUTIndex] << endl;
+	  return 1;
+	}
+
+	cout << "Comparing output file and expected output file ....." << endl;
+
+	bool same = dGraph.compareOutputFiles( expectedOutputFiles[FUTIndex], expectedOutputFilePointer, outputFiles[FUTIndex], outputFilePointer );
+
+	cout << "Output file and expected output file are ";
+	if ( same ) 
+	  cout << "the ";
+	else 
+	  cout << "not the ";
+	cout << "same." << endl << endl; 
+
 	end = high_resolution_clock::now();
 	int runtime = duration_cast<microseconds>(end - theBigBang).count();
 
 	cout << "CURRENT RUNTIME: " << fixed << setprecision( 2 ) << ((float)runtime) / 1000 << "ms" << endl << endl;
 
 	inputFilePointer.close();
+	expectedOutputFilePointer.close();
 	outputFilePointer.close();
   }
 
