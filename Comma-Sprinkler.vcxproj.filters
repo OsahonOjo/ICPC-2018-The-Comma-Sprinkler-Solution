@@ -19,4 +19,54 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="tc-1.ans">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-1.in">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-2.ans">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-2.in">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-3.ans">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-3.in">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-4.ans">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-4.in">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-5.ans">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-5.in">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-6.ans">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-6.in">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-7.ans">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-7.in">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-8.ans">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tc-8.in">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

@@ -141,6 +141,24 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="tc-1.ans" />
+    <None Include="tc-1.in" />
+    <None Include="tc-2.ans" />
+    <None Include="tc-2.in" />
+    <None Include="tc-3.ans" />
+    <None Include="tc-3.in" />
+    <None Include="tc-4.ans" />
+    <None Include="tc-4.in" />
+    <None Include="tc-5.ans" />
+    <None Include="tc-5.in" />
+    <None Include="tc-6.ans" />
+    <None Include="tc-6.in" />
+    <None Include="tc-7.ans" />
+    <None Include="tc-7.in" />
+    <None Include="tc-8.ans" />
+    <None Include="tc-8.in" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
